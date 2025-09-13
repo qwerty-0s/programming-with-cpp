@@ -62,6 +62,11 @@ auto least_squares (const std::vector<Point>& points)
   size_t N = points.size();
   double x_ave = 0., x2_ave = 0.;
   double y_ave = 0., xy_ave = 0.;
+  double dispersion = 0.;
+  double e_square_sum = 0.;
+  double sum_dx_square = 0.;
+  double se_b = 0.;
+  double se_a = 0.;
 
   for (const auto& p : points)
   {
@@ -78,11 +83,28 @@ auto least_squares (const std::vector<Point>& points)
   // compute linear coefficient estimate
   double b = (xy_ave - x_ave * y_ave) / (x2_ave - x_ave * x_ave);
 
+  // compute dispersion ^ 2 
+
+
   if (!std::isfinite(b))
     throw std::overflow_error{"division by zero"};
 
   // compute constant coefficient estimate
   double a = y_ave - b * x_ave;
+
+
+    for (const auto& p :points)
+  {
+    e_square_sum += (p.y - (a + b * p.x)) * (p.y - (a + b * p.x));
+    sum_dx_square += (p.x - x_ave) * (p.x - x_ave);
+  }
+
+  dispersion = e_square_sum/(N-2);
+
+  se_b = 0.95*sqrt(dispersion/sum_dx_square);
+  se_a = 0.95*sqrt(dispersion*(1/N+(x2_ave/sum_dx_square)));
+
+
 
   return std::make_tuple(Coeff{a, 0.}, Coeff{b, 0.});
 }
