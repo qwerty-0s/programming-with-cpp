@@ -106,7 +106,7 @@ auto least_squares (const std::vector<Point>& points)
 
 
 
-  return std::make_tuple(Coeff{a, 0.}, Coeff{b, 0.});
+  return std::make_tuple(Coeff{a, se_a}, Coeff{b, se_b});
 }
 
 int main (int argc, char* argv[])
