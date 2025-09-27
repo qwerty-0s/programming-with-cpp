@@ -10,21 +10,22 @@ include_directories(
     ${LIB_DIR}
 )
 
-add_subdirectory(07/calculator)
+add_executable(prog 05/calculator02buggy.cpp)
+# add_subdirectory(07/calculator)
 
-add_subdirectory(08/vec)
-add_subdirectory(08/logic_elements)
+# add_subdirectory(08/vec)
+# add_subdirectory(08/logic_elements)
 
-add_subdirectory(ch12/shape_primitives)
-add_subdirectory(ch12/koch_snowflake)
+# add_subdirectory(ch12/shape_primitives)
+# add_subdirectory(ch12/koch_snowflake)
 
-add_subdirectory(ch13/cross_wheel)
-add_subdirectory(ch13/fibonacci_spiral)
-add_subdirectory(ch13/hexagon_tile)
+# add_subdirectory(ch13/cross_wheel)
+# add_subdirectory(ch13/fibonacci_spiral)
+# add_subdirectory(ch13/hexagon_tile)
 
-add_subdirectory(ch14/logic_shapes)
+# add_subdirectory(ch14/logic_shapes)
 
-add_subdirectory(ch15/least_squares)
+# add_subdirectory(ch15/least_squares)
 
-add_subdirectory(ch16/chessboard)
-add_subdirectory(ch16/checkers)
+# add_subdirectory(ch16/chessboard)
+# add_subdirectory(ch16/checkers)
