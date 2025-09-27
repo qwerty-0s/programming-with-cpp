@@ -188,9 +188,9 @@ double expression ()
   }
 }
 
-int main()
-{
-  cout<<"aaa"<<'\n';
+int main (){
+
+
 try
 {
     auto val = int();
