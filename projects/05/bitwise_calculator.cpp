@@ -62,21 +62,26 @@ Token_stream::Token_stream() : buffer{0}
 
 }
 
-Token Token_stream::get()
+Token Token_stream::get() //std::istream& input
 {
-  if (full)  // do we already have a Token ready?
+  if (full) 
   {
-    full = false;  // remove Token from buffer
+    full = false;  
     return buffer;
   }
 
   char ch;
-  cin >> ch;  // note that >> skips whitespace (space, newline, tab, ...)
+  cin >> ch;  
+
+  if (cin.fail())
+  {
+    error("cin fail");
+  }
 
   switch (ch)
   {
-    case ';':  // for "print"
-    case 'q':  // for "quit"
+    case ';': 
+    case 'q':  
     case '(':
     case ')':
     case '&':
@@ -99,11 +104,16 @@ Token Token_stream::get()
     {
       cin.putback(ch);  // put digit back into the input stream
       int val;
-      cin >> val;              
+      cin >> val;  
+      if (cin.fail())
+      {
+        error("cin fail");
+      }            
       return Token{'8', val};  // let '8' represent "a number"
     }
 
     default : 
+    
     error("bad token"); 
   }
 
